@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: app-version
+spec:
+  ttlSecondsAfterFinished: 100
+  template:    
+    spec:
+      containers:
+      - name: app-version 
+        image: busybox:latest
+        command: ["/bin/sh", "-c"]
+        args:
+          - wget -q http://$APP_HOSTNAME/index.html;
+            echo "$APP_HOSTNAME version:";
+            cat index.html | grep -o '[0-9]\.[0-9]';
+        env:
+          - name: APP_HOSTNAME
+            value: "web-app"    
+      restartPolicy: Never      
+  backoffLimit: 4
