@@ -36,4 +36,6 @@ Return back to local docker env
 ```
 eval $(minikube docker-env -u)
 ```
-
+## References
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+https://theithollow.com/2019/01/30/kubernetes-deployments/
