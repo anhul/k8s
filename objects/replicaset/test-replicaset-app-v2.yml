@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: web-app
+#   labels:
+#     app: simple-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-web
+  template:
+    metadata:
+      labels:
+        app: simple-web
+    spec:
+      containers:
+      - name: web-app-nginx
+        image: app:1.0
+        ports:
+        - containerPort: 80 #the port of the container within the pod
